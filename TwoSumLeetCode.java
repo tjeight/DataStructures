@@ -1,5 +1,4 @@
-public class App {
-
+public class TwoSumLeetCode {
     public static void main(String[] args) {
         int[] number = { 2, 7, 11, 15 };
         int[] result = twoSum(number, 9);
@@ -9,10 +8,6 @@ public class App {
         } else {
             System.out.println("No valid pair found.");
         }
-    }
-
-    static String checkEvenOdd(int n) {
-        return n % 2 == 0 ? "Even" : "Odd";
     }
 
     public static int[] twoSum(int[] nums, int target) {
