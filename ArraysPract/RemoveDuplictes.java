@@ -1,6 +1,6 @@
 package ArraysPract;
 
-public class RemoveDuplicats {
+public class RemoveDuplictes {
     public static void main(String[] args) {
         int nums[] = { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 }; // Example 2
         int k = removeDuplicates(nums);
