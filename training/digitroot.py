@@ -1,0 +1,1 @@
+def get_digital_root(num):
