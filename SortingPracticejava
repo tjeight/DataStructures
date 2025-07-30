@@ -1,0 +1,65 @@
+import java.util.Arrays;
+
+public class SortingPractice {
+
+    public static void main(String[] args) {
+
+    int[] nums = {-9,4,5,6,8,5};
+    selectionSortMin(nums);
+    System.out.println(Arrays.toString(nums));
+
+    }
+
+    public static  void bubbleSort(int[] num){
+        for (int i = 0; i < num.length; i++) {
+            for (int j = 1; j <=num.length-i-1; j++) {
+                if (num[j-1] > num[j]){
+                    swap(num,j-1,j);
+                }
+            }
+        }
+    }
+
+    public static void insertionSortShift(int[] num){
+        for (int i = 0; i < num.length-1; i++) {
+            int key = num[i+1];
+            int j = i;
+            while (j>=0 && num[j] > key){
+
+                    num[j+1] =num[j];
+                    j--;
+                }
+                num[j+1] = key;
+
+            }
+
+
+    }
+
+
+    public static  void selectionSortMin(int[] num){
+        for (int i = 0 ; i < num.length-1;i++){
+           int  minIndex = i;
+           for (int j = i+1;j< num.length;j++){
+               if (num[minIndex] > num[j])
+                   minIndex = j;
+           }
+           swap(num,minIndex,i);
+        }
+
+
+
+    }
+
+
+
+
+
+    private static void swap(int[] num, int first, int second) {
+        int temp =  num[first];
+        num[first] =  num[second];
+        num[second] = temp;
+    }
+
+
+}
