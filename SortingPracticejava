@@ -1,0 +1,179 @@
+import java.util.Arrays;
+
+public class SortingPractice {
+
+    public static void main(String[] args) {
+
+    int[] nums = {-1,-5,-6,-5};
+    quickSort(nums,0,nums.length-1);
+    System.out.println(Arrays.toString(nums));
+
+    }
+
+    public static  void bubbleSort(int[] num){
+        for (int i = 0; i < num.length; i++) {
+            for (int j = 1; j <=num.length-i-1; j++) {
+                if (num[j-1] > num[j]){
+                    swap(num,j-1,j);
+                }
+            }
+        }
+    }
+
+    public static void insertionSortShift(int[] num){
+        for (int i = 0; i < num.length-1; i++) {
+            int key = num[i+1];
+            int j = i;
+            while (j>=0 && num[j] > key){
+
+                    num[j+1] =num[j];
+                    j--;
+                }
+                num[j+1] = key;
+
+            }
+
+
+    }
+
+
+    public static  void selectionSortMin(int[] num){
+        for (int i = 0 ; i < num.length-1;i++){
+           int  minIndex = i;
+           for (int j = i+1;j< num.length;j++){
+               if (num[minIndex] > num[j])
+                   minIndex = j;
+           }
+           swap(num,minIndex,i);
+        }
+
+
+
+    }
+
+
+    public static void selectionSortMax(int[] num) {
+
+        for(int i = 0 ; i < num.length;i++){
+            int last =  num.length-i-1;
+            int maxIndex = 0 ;
+            for (int j= 1; j <=last;j++){
+                if (num[maxIndex] < num[j])
+                    maxIndex = j;
+            }
+            swap(num,maxIndex,last);
+        }
+    }
+
+
+    public static  void cyclicSort(int[] num){
+
+        int i = 0;
+        while(i < num.length){
+            int correctIndex = num[i];
+            if (num[i] != num[correctIndex]){
+                swap(num,correctIndex,i);
+            }else {
+                i++;
+            }
+
+        }
+
+    }
+
+    public static int[] mergeSort(int[] num){
+        int mid =  num.length/2;
+
+        if (num.length == 1)
+            return num;
+
+        int[] left = mergeSort(Arrays.copyOfRange(num,0,mid));
+        int[] right = mergeSort(Arrays.copyOfRange(num,mid,num.length));
+
+
+      return merge(left,right);
+
+
+
+    }
+
+    private static int[] merge(int[] left, int[] right) {
+        int[] mix =  new int[left.length + right.length];
+
+        int i =0 ;
+        int j = 0;
+        int k = 0 ;
+        while (i<left.length && j < right.length){
+
+            if (left[i] < right[j]){
+                mix[k] = left[i];
+                i++;
+            }else {
+                mix[k] = right[j];
+                j++;
+            }
+            k++;
+        }
+
+
+
+
+        while(i < left.length){
+            mix[k] = left[i];
+            i++;
+            k++;
+        }
+        while (j < right.length){
+            mix[k] = right[j];
+            j++;
+            k++;
+        }
+
+        return mix;
+    }
+
+
+    private static void swap(int[] num, int first, int second) {
+        int temp =  num[first];
+        num[first] =  num[second];
+        num[second] = temp;
+    }
+
+
+    public static void quickSort(int[] num, int start, int end){
+
+
+        if (start < end) {
+
+
+            int pivot = num[start];
+            int left = start + 1;
+            int right = end;
+
+
+            while (left <= right) {
+
+                while (left <= end && num[left] < pivot) {
+                    left++;
+                }
+                while (right >= start && num[right] > pivot) {
+                    right--;
+                }
+                if (left < right) {
+                    swap(num, left, right);
+                    left++;
+                    right--;
+
+                }
+            }
+            swap(num, start, right);
+
+            quickSort(num, start, right-1);
+            quickSort(num,right+1,end);
+        }
+    }
+
+
+
+
+}
